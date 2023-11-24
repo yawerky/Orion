@@ -1,0 +1,6 @@
+framework module Pods_OrionByYawar {
+  umbrella header "Pods-OrionByYawar-umbrella.h"
+
+  export *
+  module * { export * }
+}
