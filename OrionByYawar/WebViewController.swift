@@ -15,8 +15,11 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
     private var browseHistoryArray: [URL] = []
     private var folderUrl: URL?
     @IBOutlet weak var tabCount: UIButton!
+    @IBOutlet weak var addBtn: UIButton!
+    
     @IBOutlet weak var webviewCOntainer: UIView!
     @IBOutlet weak var actionsContailer: UIView!
+    
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
@@ -44,7 +47,7 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
         view.bringSubviewToFront(actionsContailer)
         webView.navigationDelegate = self
         webViewArray.append(webView)
-        tabCount.setTitle("\(webViewArray.count)", for: .normal)
+        addBtn.setTitle("\(webViewArray.count-1)", for: .normal)
     }
     
     @IBAction func addNewTabClicked(_ sender: Any) {
@@ -54,15 +57,24 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBAction func deleeClicked(_ sender: Any) {
         webViewArray.last?.removeFromSuperview()
         webViewArray.removeLast()
-        tabCount.setTitle("\(webViewArray.count)", for: .normal)
+        addBtn.setTitle("\(webViewArray.count-1)", for: .normal)
     }
     
     @IBAction func goBackClicked(_ sender: Any) {
         webViewArray.last?.goBack()
     }
     
+    func showAlert() {
+            let alertController = UIAlertController(title: "Alert", message: "Click Add to Orion to install extention", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            }
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    
     @IBAction func tabCouctClicked(_ sender: Any) {
         guard let url = folderUrl else {
+            showAlert()
             return
         }
         let panelJSPath = url.appendingPathComponent("popup/panel.js")

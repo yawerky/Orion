@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,13 +14,12 @@
 		E152D1D42B0E2393007614D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E152D1D22B0E2393007614D7 /* LaunchScreen.storyboard */; };
 		E152D1DC2B0E2474007614D7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152D1DB2B0E2474007614D7 /* WebViewController.swift */; };
 		E1698EE52B0F0A870009A98C /* myHtml.html in Resources */ = {isa = PBXBuildFile; fileRef = E1698EE42B0F0A870009A98C /* myHtml.html */; };
-		E1BBBC6B2B107CA00015D818 /* panel.js in Resources */ = {isa = PBXBuildFile; fileRef = E1BBBC6A2B107CA00015D818 /* panel.js */; };
 		E1BBBC702B10B59F0015D818 /* ToSitesTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BBBC6F2B10B59F0015D818 /* ToSitesTVC.xib */; };
 		E1BBBC722B10B5A80015D818 /* ToSitesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBBC712B10B5A80015D818 /* ToSitesTVC.swift */; };
 		E1BBBC742B10BD3F0015D818 /* TopsitesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBBC732B10BD3F0015D818 /* TopsitesVC.swift */; };
-		E1C46D262B0F588E00B09684 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = E1C46D252B0F588E00B09684 /* Zip */; };
 		E1E79B4E2B0F56FA0073DDD6 /* Pods_OrionByYawar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503E1BFBA2E84CDDB192ABCB /* Pods_OrionByYawar.framework */; };
 		E1E79B4F2B0F56FA0073DDD6 /* Pods_OrionByYawar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503E1BFBA2E84CDDB192ABCB /* Pods_OrionByYawar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E1F1DC6D2B10DA8000180D27 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = E1F1DC6C2B10DA8000180D27 /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +50,6 @@
 		E152D1DB2B0E2474007614D7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1698EE42B0F0A870009A98C /* myHtml.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = myHtml.html; sourceTree = "<group>"; };
 		E1A01E5E2B0F251400565AC0 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		E1BBBC6A2B107CA00015D818 /* panel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = panel.js; path = "../../../Downloads/top_sites_button-1.5/popup/panel.js"; sourceTree = "<group>"; };
 		E1BBBC6F2B10B59F0015D818 /* ToSitesTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToSitesTVC.xib; sourceTree = "<group>"; };
 		E1BBBC712B10B5A80015D818 /* ToSitesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSitesTVC.swift; sourceTree = "<group>"; };
 		E1BBBC732B10BD3F0015D818 /* TopsitesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopsitesVC.swift; sourceTree = "<group>"; };
@@ -62,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C46D262B0F588E00B09684 /* Zip in Frameworks */,
+				E1F1DC6D2B10DA8000180D27 /* Zip in Frameworks */,
 				E1E79B4E2B0F56FA0073DDD6 /* Pods_OrionByYawar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +89,6 @@
 		E152D1BB2B0E2392007614D7 = {
 			isa = PBXGroup;
 			children = (
-				E1BBBC6A2B107CA00015D818 /* panel.js */,
 				E152D1C62B0E2392007614D7 /* OrionByYawar */,
 				E152D1C52B0E2392007614D7 /* Products */,
 				5D7A93D2BFFC6FEA4C664620 /* Pods */,
@@ -152,7 +149,7 @@
 			);
 			name = OrionByYawar;
 			packageProductDependencies = (
-				E1C46D252B0F588E00B09684 /* Zip */,
+				E1F1DC6C2B10DA8000180D27 /* Zip */,
 			);
 			productName = OrionByYawar;
 			productReference = E152D1C42B0E2392007614D7 /* OrionByYawar.app */;
@@ -183,7 +180,7 @@
 			);
 			mainGroup = E152D1BB2B0E2392007614D7;
 			packageReferences = (
-				E1C46D242B0F588E00B09684 /* XCLocalSwiftPackageReference "../../../Downloads/Zip-master" */,
+				E1F1DC6B2B10DA8000180D27 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = E152D1C52B0E2392007614D7 /* Products */;
 			projectDirPath = "";
@@ -203,7 +200,6 @@
 				E1BBBC702B10B59F0015D818 /* ToSitesTVC.xib in Resources */,
 				E1698EE52B0F0A870009A98C /* myHtml.html in Resources */,
 				E152D1D12B0E2393007614D7 /* Assets.xcassets in Resources */,
-				E1BBBC6B2B107CA00015D818 /* panel.js in Resources */,
 				E152D1CF2B0E2392007614D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,16 +472,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		E1C46D242B0F588E00B09684 /* XCLocalSwiftPackageReference "../../../Downloads/Zip-master" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/Zip-master";
+/* Begin XCRemoteSwiftPackageReference section */
+		E1F1DC6B2B10DA8000180D27 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E1C46D252B0F588E00B09684 /* Zip */ = {
+		E1F1DC6C2B10DA8000180D27 /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = E1F1DC6B2B10DA8000180D27 /* XCRemoteSwiftPackageReference "Zip" */;
 			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
