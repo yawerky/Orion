@@ -20,6 +20,8 @@
 		E1E79B4E2B0F56FA0073DDD6 /* Pods_OrionByYawar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503E1BFBA2E84CDDB192ABCB /* Pods_OrionByYawar.framework */; };
 		E1E79B4F2B0F56FA0073DDD6 /* Pods_OrionByYawar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503E1BFBA2E84CDDB192ABCB /* Pods_OrionByYawar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E1F1DC6D2B10DA8000180D27 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = E1F1DC6C2B10DA8000180D27 /* Zip */; };
+		E1F1DC712B10DDD300180D27 /* screentshot1.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1DC6F2B10DDD300180D27 /* screentshot1.png */; };
+		E1F1DC722B10DDD300180D27 /* screentshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1DC702B10DDD300180D27 /* screentshot2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,8 @@
 		E1BBBC6F2B10B59F0015D818 /* ToSitesTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToSitesTVC.xib; sourceTree = "<group>"; };
 		E1BBBC712B10B5A80015D818 /* ToSitesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSitesTVC.swift; sourceTree = "<group>"; };
 		E1BBBC732B10BD3F0015D818 /* TopsitesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopsitesVC.swift; sourceTree = "<group>"; };
+		E1F1DC6F2B10DDD300180D27 /* screentshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screentshot1.png; path = ../../screentshot1.png; sourceTree = "<group>"; };
+		E1F1DC702B10DDD300180D27 /* screentshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screentshot2.png; path = ../../screentshot2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		E152D1BB2B0E2392007614D7 = {
 			isa = PBXGroup;
 			children = (
+				E1F1DC6E2B10DDC400180D27 /* screenshots */,
 				E152D1C62B0E2392007614D7 /* OrionByYawar */,
 				E152D1C52B0E2392007614D7 /* Products */,
 				5D7A93D2BFFC6FEA4C664620 /* Pods */,
@@ -128,6 +133,15 @@
 				E1BBBC732B10BD3F0015D818 /* TopsitesVC.swift */,
 			);
 			path = Topsites;
+			sourceTree = "<group>";
+		};
+		E1F1DC6E2B10DDC400180D27 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				E1F1DC6F2B10DDD300180D27 /* screentshot1.png */,
+				E1F1DC702B10DDD300180D27 /* screentshot2.png */,
+			);
+			path = screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +213,9 @@
 				E152D1D42B0E2393007614D7 /* LaunchScreen.storyboard in Resources */,
 				E1BBBC702B10B59F0015D818 /* ToSitesTVC.xib in Resources */,
 				E1698EE52B0F0A870009A98C /* myHtml.html in Resources */,
+				E1F1DC722B10DDD300180D27 /* screentshot2.png in Resources */,
 				E152D1D12B0E2393007614D7 /* Assets.xcassets in Resources */,
+				E1F1DC712B10DDD300180D27 /* screentshot1.png in Resources */,
 				E152D1CF2B0E2392007614D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
