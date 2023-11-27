@@ -7,13 +7,15 @@
 
 import UIKit
 import WebKit
-import SafariServices
 import Zip
+import Foundation
 
-class WebViewController: UIViewController, SFSafariViewControllerDelegate {
+class WebViewController: UIViewController {
     private var webViewArray: [WKWebView] = []
     private var browseHistoryArray: [URL] = []
     private var folderUrl: URL?
+    private var manifest: Manifest?
+    
     @IBOutlet weak var tabCount: UIButton!
     @IBOutlet weak var addBtn: UIButton!
     
@@ -26,7 +28,7 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
         super.viewDidLoad()
         textField.delegate = self
         createWebView(urlString: "https://addons.mozilla.org/en-US/firefox/addon/top-sites-button/")
-      
+        
     }
     
     func createWebView(urlString: String){
@@ -65,42 +67,22 @@ class WebViewController: UIViewController, SFSafariViewControllerDelegate {
     }
     
     func showAlert() {
-            let alertController = UIAlertController(title: "Alert", message: "Click Add to Orion to install extention", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            }
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Alert", message: "Click Add to Orion to install extention", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
         }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func tabCouctClicked(_ sender: Any) {
-        guard let url = folderUrl else {
-            showAlert()
-            return
-        }
-        let panelJSPath = url.appendingPathComponent("popup/panel.js")
-        if FileManager.default.fileExists(atPath: url.path) {
-                    if let panelJSContents = try? String(contentsOf: panelJSPath) {
-                        webViewArray.last?.evaluateJavaScript(panelJSContents, completionHandler: { (result, error) in
-                        if let error = error {
-                            print("\(error)")
-                        } else {
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let topSitesVC = storyboard.instantiateViewController(withIdentifier: "topsitesVC") as! TopsitesVC
-                            topSitesVC.data = self.browseHistoryArray
-                            self.present(topSitesVC, animated: true, completion: nil)
-                        }
-                        })
-                    } else {
-                        print("Failed to read panel.js")
-                    }
-                }
+        
+    
     }
 }
 
 extension WebViewController:WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print(webView.url?.absoluteString)
         guard let url = webView.url else {
             return
         }
@@ -136,6 +118,59 @@ extension WebViewController:WKNavigationDelegate{
             }
         }
     }
+}
+
+extension WebViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if var text = textField.text, !webViewArray.isEmpty {
+            if !text.lowercased().hasPrefix("http://") && !text.lowercased().hasPrefix("https://") {
+                text = "https://www." + text
+            }
+            let lastWebView = webViewArray.last!
+            lastWebView.navigationDelegate = self
+            let request = URLRequest(url: URL(string: text)!)
+            lastWebView.load(request)
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension WebViewController{
+    
+    func readJSONFromFile(fileURL:URL) {
+        do {
+            let path = fileURL.appendingPathComponent("manifest.json")
+            let data = try Data(contentsOf: path)
+            let decoder = JSONDecoder()
+            self.manifest = try decoder.decode(Manifest.self, from: data)
+            self.setIconToButton(image: self.manifest?.browser_action?.default_icon?.four_eight ?? "", fileURL: fileURL)
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func setIconToButton(image:String, fileURL:URL) {
+        let panelJSPath = fileURL.appendingPathComponent(image)
+        do {
+            let imageData = try Data(contentsOf: panelJSPath)
+            let image = UIImage(data: imageData)
+            tabCount.setImage(image, for: .normal)
+            } catch {
+                print(" \(error)")
+            }
+        }
+    
+    func checkUnzippedFolder(zipURL: URL) {
+        do {
+            let unzipDirectory = try Zip.quickUnzipFile(zipURL)
+            self.folderUrl = try Zip.quickUnzipFile(zipURL)
+            let panelJSPath = unzipDirectory.appendingPathComponent("manifest.json")
+            self.readJSONFromFile(fileURL: unzipDirectory)
+        } catch {
+            print("\(error)")
+        }
+    }
     
     func downloadAndCheckFile(urlString:String) {
         guard let fileURL = URL(string: urlString) else {
@@ -152,45 +187,13 @@ extension WebViewController:WKNavigationDelegate{
                 do {
                     try FileManager.default.moveItem(at: tempLocalUrl, to: destinationURL)
                     self.folderUrl = try Zip.quickUnzipFile(destinationURL)
-                    
-                    
+                    let panelJSPath = try Zip.quickUnzipFile(destinationURL).appendingPathComponent("manifest.json")
+                    self.readJSONFromFile(fileURL: panelJSPath)
                 } catch {
                     print("\(error)")
                 }
             }
         }
         downloadTask.resume()
-    }
-    
-    func checkUnzippedFolder(zipURL: URL) {
-        do {
-            let unzipDirectory = try Zip.quickUnzipFile(zipURL)
-            let localiseJSPath = unzipDirectory.appendingPathComponent("localise.js")
-            if FileManager.default.fileExists(atPath: localiseJSPath.path) {
-                self.folderUrl = unzipDirectory
-            } else {
-                print("localise.js not there")
-            }
-        } catch {
-            print("\(error)")
-        }
-    }
-    
-    
-}
-
-extension WebViewController:UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if var text = textField.text, !webViewArray.isEmpty {
-            if !text.lowercased().hasPrefix("http://") && !text.lowercased().hasPrefix("https://") {
-                text = "https://www." + text
-            }
-            let lastWebView = webViewArray.last!
-            lastWebView.navigationDelegate = self
-            let request = URLRequest(url: URL(string: text)!)
-            lastWebView.load(request)
-        }
-        textField.resignFirstResponder()
-        return true
     }
 }
